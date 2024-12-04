@@ -49,9 +49,10 @@ if st.button("Analyze"):
 
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
+
         # Detect system theme
         system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
-
+        
         # Set colors based on theme
         if system_theme == "dark":
             bar_color = "white"
@@ -61,7 +62,19 @@ if st.button("Analyze"):
             text_color = "black"
         
         # Plot the bar chart
-        ax.bar(top_emotion_labels, top_emotion_values, color=bar_color)
+        bars = ax.bar(top_emotion_labels, top_emotion_values, color=bar_color)
+        
+        # Annotate bars with percentage values
+        for bar, value in zip(bars, top_emotion_values):
+            percent = f"{value * 100:.1f}%"  # Convert to percentage with 1 decimal place
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,  # X-coordinate
+                bar.get_height() + 0.01,           # Y-coordinate (slightly above the bar)
+                percent,                           # Annotation text
+                ha='center',                       # Center align text
+                color=text_color,                  # Text color matches theme
+                fontsize=10                        # Font size for annotation
+            )
         
         # Set titles and labels
         ax.set_title("Emotion Analysis", color=text_color)
