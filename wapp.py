@@ -3,6 +3,7 @@ from transformers import pipeline
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import matplotlib.pyplot as plt
 from collections import Counter
+import textwrap
 
 # Load models
 @st.cache_resource
@@ -49,7 +50,7 @@ if st.button("Analyze"):
 
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
-
+        
         # Detect system theme
         system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
         
@@ -76,6 +77,11 @@ if st.button("Analyze"):
                 fontsize=10                        # Font size for annotation
             )
         
+        # Format x-axis labels to fit within columns
+        wrapped_labels = [textwrap.fill(label, 10) for label in top_emotion_labels]  # Wrap labels to 10 chars
+        ax.set_xticks(range(len(wrapped_labels)))
+        ax.set_xticklabels(wrapped_labels, rotation=0, ha='center', fontsize=10, color=text_color)
+        
         # Set titles and labels
         ax.set_title("Emotion Analysis", color=text_color)
         ax.set_xlabel("Emotions", color=text_color)
@@ -85,11 +91,6 @@ if st.button("Analyze"):
         # Make the background transparent
         fig.patch.set_alpha(0)  # Make the overall figure background transparent
         ax.set_facecolor("none")  # Make the axes (plot area) background transparent
-        
-        # Rotate x-axis labels for better readability
-        ax.set_xticks(range(len(top_emotion_labels)))
-        ax.set_xticklabels(top_emotion_labels, rotation=45, ha='right', fontsize=10, color=text_color)
-        ax.tick_params(axis='y', colors=text_color)
         
         # Adjust layout to prevent label overlap
         plt.tight_layout()
