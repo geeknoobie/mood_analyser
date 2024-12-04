@@ -88,7 +88,6 @@ if st.button("Analyze"):
         
         # Set titles and labels
         ax.set_title("Emotion Analysis")
-        ax.set_xlabel("Emotions", color=text_color)
         ax.set_ylabel("Scores", color=text_color)
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
         
