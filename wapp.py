@@ -18,9 +18,8 @@ emotion_model, sentiment_analyzer = load_models()
 st.title("Mood Analyzer")
 
 # User input
-st.write("### Enter your text below:")
-user_input = st.text_area("","")
-x
+st.write("### Tell uss about your day :) ")
+user_input = st.text_area("Enter your text below:","")
 if st.button("Analyze"):
     if user_input.strip():
         # Analyze sentiment using VADER
