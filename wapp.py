@@ -49,29 +49,38 @@ if st.button("Analyze"):
 
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
+        # Detect system theme
+        system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
 
+        # Set colors based on theme
+        if system_theme == "dark":
+            bar_color = "white"
+            text_color = "white"
+        else:
+            bar_color = "black"
+            text_color = "black"
+        
         # Plot the bar chart
-        ax.bar(top_emotion_labels, top_emotion_values, color='white')
-
+        ax.bar(top_emotion_labels, top_emotion_values, color=bar_color)
+        
         # Set titles and labels
-        ax.set_title("Emotion Analysis", color='white')
+        ax.set_title("Emotion Analysis", color=text_color)
+        ax.set_xlabel("Emotions", color=text_color)
+        ax.set_ylabel("Scores", color=text_color)
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
-
+        
         # Make the background transparent
         fig.patch.set_alpha(0)  # Make the overall figure background transparent
         ax.set_facecolor("none")  # Make the axes (plot area) background transparent
-
-        # Generate float y-ticks dynamically
-        y_ticks = [round(i, 2) for i in list(map(lambda x: x / 10, range(0, int(max(top_emotion_values) * 10) + 2)))]
-        ax.set_yticks(y_ticks)
-        ax.set_yticklabels([f"{tick:.2f}" for tick in y_ticks], fontsize=10, color='white')
-
+        
         # Rotate x-axis labels for better readability
-        ax.set_xticklabels(top_emotion_labels, fontsize=10, color='white')
-
+        ax.set_xticks(range(len(top_emotion_labels)))
+        ax.set_xticklabels(top_emotion_labels, rotation=45, ha='right', fontsize=10, color=text_color)
+        ax.tick_params(axis='y', colors=text_color)
+        
         # Adjust layout to prevent label overlap
         plt.tight_layout()
-
+        
         # Display the graph in Streamlit
         st.pyplot(fig)
 
