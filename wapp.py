@@ -19,7 +19,7 @@ st.title("Mood Analyzer")
 
 # User input
 st.write("### Enter your text below:")
-user_input = st.text_area("")
+user_input = st.text_area("","")
 x
 if st.button("Analyze"):
     if user_input.strip():
