@@ -14,7 +14,7 @@ def load_models():
 emotion_model, sentiment_analyzer = load_models()
 
 # App title
-st.title("Mood and Sentiment Analyzer")
+st.title("Mood Analyzer")
 
 # User input
 st.write("### Enter your text below:")
