@@ -1,3 +1,6 @@
 transformers
 vaderSentiment
 matplotlib
+torch
+torchvision
+torchaudio
