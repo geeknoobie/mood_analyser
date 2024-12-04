@@ -87,7 +87,7 @@ if st.button("Analyze"):
         ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size, color=text_color)
         
         # Set titles and labels
-        ax.set_title("Emotion Analysis", color=text_color)
+        ax.set_title("Emotion Analysis")
         ax.set_xlabel("Emotions", color=text_color)
         ax.set_ylabel("Scores", color=text_color)
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
