@@ -50,7 +50,7 @@ if st.button("Analyze"):
 
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
-        
+
         # Detect system theme
         system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
         
@@ -77,10 +77,14 @@ if st.button("Analyze"):
                 fontsize=10                        # Font size for annotation
             )
         
-        # Format x-axis labels to fit within columns
-        wrapped_labels = [textwrap.fill(label, 10) for label in top_emotion_labels]  # Wrap labels to 10 chars
-        ax.set_xticks(range(len(wrapped_labels)))
-        ax.set_xticklabels(wrapped_labels, rotation=0, ha='center', fontsize=10, color=text_color)
+        # Dynamically adjust font size based on figure size and number of labels
+        label_count = len(top_emotion_labels)
+        fig_width = fig.get_figwidth()
+        font_size = max(8, min(12, int(fig_width * 3 / label_count)))  # Dynamically scale between 8 and 12
+        
+        # Set x-axis labels with adjusted font size
+        ax.set_xticks(range(len(top_emotion_labels)))
+        ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size, color=text_color)
         
         # Set titles and labels
         ax.set_title("Emotion Analysis", color=text_color)
@@ -97,6 +101,5 @@ if st.button("Analyze"):
         
         # Display the graph in Streamlit
         st.pyplot(fig)
-
     else:
         st.warning("Please enter some text to analyze.")
