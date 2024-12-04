@@ -51,19 +51,8 @@ if st.button("Analyze"):
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
 
-        # Detect system theme
-        system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
-        
-        # Set colors based on theme
-        if system_theme == "dark":
-            bar_color = "white"
-            text_color = "white"
-        else:
-            bar_color = "black"
-            text_color = "black"
-        
         # Plot the bar chart
-        bars = ax.bar(top_emotion_labels, top_emotion_values, color=bar_color)
+        bars = ax.bar(top_emotion_labels, top_emotion_values)
         
         # Annotate bars with percentage values
         for bar, value in zip(bars, top_emotion_values):
@@ -73,7 +62,6 @@ if st.button("Analyze"):
                 bar.get_height() + 0.01,           # Y-coordinate (slightly above the bar)
                 percent,                           # Annotation text
                 ha='center',                       # Center align text
-                color=text_color,                  # Text color matches theme
                 fontsize=10                        # Font size for annotation
             )
         
@@ -84,11 +72,12 @@ if st.button("Analyze"):
         
         # Set x-axis labels with adjusted font size
         ax.set_xticks(range(len(top_emotion_labels)))
-        ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size, color=text_color)
+        ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size)
         
         # Set titles and labels
         ax.set_title("Emotion Analysis")
-        ax.set_ylabel("Scores", color=text_color)
+        ax.set_xlabel("Emotions")
+        ax.set_ylabel("Scores")
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
         
         # Make the background transparent
