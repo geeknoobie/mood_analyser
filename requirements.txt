@@ -1,0 +1,3 @@
+transformers
+vaderSentiment
+matplotlib
