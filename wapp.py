@@ -51,6 +51,15 @@ if st.button("Analyze"):
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
 
+        # Detect system theme
+        system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
+        
+        # Set text color dynamically
+        if system_theme == "dark":
+            text_color = "white"
+        else:
+            text_color = "black"
+        
         # Plot the bar chart
         bars = ax.bar(top_emotion_labels, top_emotion_values)
         
@@ -62,22 +71,21 @@ if st.button("Analyze"):
                 bar.get_height() + 0.01,           # Y-coordinate (slightly above the bar)
                 percent,                           # Annotation text
                 ha='center',                       # Center align text
+                color=text_color,                  # Dynamic text color
                 fontsize=10                        # Font size for annotation
             )
         
-        # Dynamically adjust font size based on figure size and number of labels
+        # Set x-axis labels with adjusted font size
         label_count = len(top_emotion_labels)
         fig_width = fig.get_figwidth()
-        font_size = max(8, min(12, int(fig_width * 3 / label_count)))  # Dynamically scale between 8 and 12
-        
-        # Set x-axis labels with adjusted font size
+        font_size = max(8, min(12, int(fig_width * 3 / label_count)))
         ax.set_xticks(range(len(top_emotion_labels)))
-        ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size)
+        ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size, color=text_color)
         
         # Set titles and labels
-        ax.set_title("Emotion Analysis")
-        ax.set_xlabel("Emotions")
-        ax.set_ylabel("Scores")
+        ax.set_title("Emotion Analysis", color=text_color)
+        ax.set_xlabel("Emotions", color=text_color)
+        ax.set_ylabel("Scores", color=text_color)
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
         
         # Make the background transparent
