@@ -83,11 +83,14 @@ if st.button("Analyze"):
         font_size = max(8, min(12, int(fig_width * 3 / label_count)))
         ax.set_xticks(range(len(top_emotion_labels)))
         ax.set_xticklabels(top_emotion_labels, rotation=0, ha='center', fontsize=font_size, color=text_color)
-        
+        # drop your labels
+        ax.yaxis.set_ticks([])
+        ax.yaxis.set_ticklabels([])
+        # removing axes spines
+        for spine in ax.spines.values():
+            spine.set_visible(False)
         # Set titles and labels
         ax.set_title("Emotion Analysis", color=text_color)
-        ax.set_xlabel("Emotions", color=text_color)
-        ax.set_ylabel("Scores", color=text_color)
         ax.set_ylim(0, max(top_emotion_values) + 0.1)
         
         # Make the background transparent
