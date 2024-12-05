@@ -38,7 +38,7 @@ if st.button("Analyze"):
         st.write("## Results")
         st.write(f"**Sentiment:** {sentiment_label}")
         st.write(f"**Dominant Emotion:** {dominant_emotion}")
-        st.write(st.get_option("theme.base"))
+        st.write(st.get_option("theme.primaryColor"))
 
         # Prepare data for the graph
         emotion_labels = [emotion['label'] for emotion in emotion_scores]
