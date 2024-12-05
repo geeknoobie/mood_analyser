@@ -18,7 +18,7 @@ emotion_model, sentiment_analyzer = load_models()
 st.title("Mood Analyzer")
 
 # User input
-st.write("### Tell uss about your day :) ")
+st.write("### Tell us about your day :) ")
 user_input = st.text_area("Enter your text below:","")
 if st.button("Analyze"):
     if user_input.strip():
