@@ -33,12 +33,13 @@ if st.button("Analyze"):
         # Analyze emotions using Transformers
         emotion_scores = emotion_model(user_input)[0]
         dominant_emotion = max(emotion_scores, key=lambda x: x['score'])['label']
+        os = st.get_option("theme.primaryColor")
 
         # Display results
         st.write("## Results")
         st.write(f"**Sentiment:** {sentiment_label}")
         st.write(f"**Dominant Emotion:** {dominant_emotion}")
-        st.write(st.get_option("theme.primaryColor"))
+        st.write(os)
 
         # Prepare data for the graph
         emotion_labels = [emotion['label'] for emotion in emotion_scores]
