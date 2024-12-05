@@ -51,9 +51,16 @@ if st.button("Analyze"):
         # Create the graph
         fig, ax = plt.subplots(facecolor='none')
 
-        # Use a neutral color that works well for both themes
-        text_color = "#6E6E6E"  # Medium gray for text
-        bar_color = "#6E6E6E"   # Same neutral color for bars
+        # Detect Streamlit theme
+        system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
+        
+        # Set text and bar colors dynamically based on the theme
+        if system_theme == "dark":
+            text_color = "white"
+            bar_color = "white"
+        else:
+            text_color = "black"
+            bar_color = "black"
         
         # Plot the bar chart
         bars = ax.bar(top_emotion_labels, top_emotion_values, color=bar_color)
@@ -66,7 +73,7 @@ if st.button("Analyze"):
                 bar.get_height() + 0.01,           # Y-coordinate (slightly above the bar)
                 percent,                           # Annotation text
                 ha='center',                       # Center align text
-                color=text_color,                  # Neutral text color
+                color=text_color,                  # Text color based on theme
                 fontsize=10                        # Font size for annotation
             )
         
