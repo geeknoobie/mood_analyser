@@ -38,6 +38,7 @@ if st.button("Analyze"):
         st.write("## Results")
         st.write(f"**Sentiment:** {sentiment_label}")
         st.write(f"**Dominant Emotion:** {dominant_emotion}")
+        st.write(st.get_option("theme.base"))
 
         # Prepare data for the graph
         emotion_labels = [emotion['label'] for emotion in emotion_scores]
@@ -54,7 +55,7 @@ if st.button("Analyze"):
         system_theme = st.get_option("theme.base")  # Returns "dark" or "light"
         
         # Set text and bar colors dynamically based on the theme
-        if system_theme == "dark":
+        if system_theme == "light":
             text_color = "white"
             bar_color = "white"
         else:
