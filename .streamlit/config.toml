@@ -1,2 +1,2 @@
 [theme]
-base = "auto"  # Automatically switch between light and dark mode
+base = "dark"  # Automatically switch between light and dark mode
