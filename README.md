@@ -1,1 +1,1 @@
-# app to analyse mood
+# App to analyse mood
